@@ -1,6 +1,6 @@
 <template>
   <div class="conter">
-    <van-nav-bar title="黑马头条" right-text="搜索"></van-nav-bar>
+    <van-nav-bar v-if="$route.path!=='/user'" title="黑马头条" right-text="搜索" @click-right="$router.push('/search')"></van-nav-bar>
     <div><router-view></router-view></div>
     <div class="footer">
       <van-tabbar route>
