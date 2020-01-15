@@ -81,14 +81,24 @@ export default {
         this.finished = true
       }
     },
-    onrefresh () {
-      console.log('下拉刷新')
-      // setTimeout(() => {
-      //   let arr = Array.from(Array(10), (value, index) => ('追加' + (index + 1)))
-      //   this.articles.unshift(...arr)
-      //   this.downloading = false
-      //   this.successtext = `更新了${arr.length}条数据`
-      // }, 1000)
+    // onrefresh () {
+    //   console.log('下拉刷新')
+    //   // setTimeout(() => {
+    //   //   let arr = Array.from(Array(10), (value, index) => ('追加' + (index + 1)))
+    //   //   this.articles.unshift(...arr)
+    //   //   this.downloading = false
+    //   //   this.successtext = `更新了${arr.length}条数据`
+    //   // }, 1000)
+    // }
+    async onrefresh () {
+      const data = await getArticles({ channel_id: this.channel_id, timestamp: Date.now() })
+      this.downLoading = false
+      if (data.results.length) {
+        this.articles = data.pre_timestamp
+        this.successtext = `更新了${data.results.length}条数据`
+      } else {
+        this.successtext = '已是最新数据'
+      }
     }
   }
 }
