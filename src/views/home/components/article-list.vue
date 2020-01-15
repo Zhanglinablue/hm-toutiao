@@ -37,6 +37,7 @@
 
 <script>
 import { getArticles } from '@/api/article'
+// import '@/utils/plugin'
 export default {
   name: 'article-list',
   data () {
@@ -72,6 +73,7 @@ export default {
     //   }
     // }, 1000)
     async onLoad () {
+      await this.$sleep()
       const data = await getArticles({ channel_id: this.channel_id, timestamp: this.timestamp || Date.now() })
       this.articles.push(...data.results)
       this.upLoading = false
@@ -91,6 +93,7 @@ export default {
     //   // }, 1000)
     // }
     async onrefresh () {
+      await this.$sleep()
       const data = await getArticles({ channel_id: this.channel_id, timestamp: Date.now() })
       this.downLoading = false
       if (data.results.length) {

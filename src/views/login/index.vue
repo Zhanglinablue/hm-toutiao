@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import '../../utils/plugin'
+// import '../../utils/plugin'
 import { login } from '@/api/user'
 import { mapMutations } from 'vuex'
 export default {
