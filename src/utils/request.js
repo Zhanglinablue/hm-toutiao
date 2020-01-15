@@ -32,7 +32,7 @@ instance.interceptors.response.use(function (response) {
   // 请求失败，判断token和
   if (error.response && error.response.status === 401) {
     let topath = {
-      path: '/',
+      path: '/login',
       query: {
         directUrl: router.currentRouter.path
       }

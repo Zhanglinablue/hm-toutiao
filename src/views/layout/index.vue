@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style lang='less' scoped>
+// less-loader > css-loader > style-loader
 .container {
   width: 100%;
   height: 100%;

@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <van-tabs v-model="activeIndex" swipeable>
-      <van-tab :title="'标签' +  item" v-for="item in 10" :key="item">
-        <article-list></article-list>
+      <van-tab :title="channel.name" v-for="channel in channels" :key="channel.id">
+        <article-list :channel_id='channel.id'></article-list>
         <span class="bar_btn">
           <van-icon name="wap-nav" />
         </span>
@@ -13,15 +13,26 @@
 
 <script>
 import ArticleList from './components/article-list'
+import { getchannels } from '@/api/channels'
 export default {
   name: 'home',
   data () {
     return {
-      activeIndex: 0
+      activeIndex: 0,
+      channels: []
     }
   },
   components: {
     ArticleList
+  },
+  methods: {
+    async  getchannels () {
+      let data = await getchannels()
+      this.channels = data.channels
+    }
+  },
+  created () {
+    this.getchannels()
   }
 }
 </script>
